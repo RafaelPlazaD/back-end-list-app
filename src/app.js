@@ -2,14 +2,20 @@ const express = require('express');
 const app = express();
 const port = 4500;
 const taskRoutes = require('./routes/taskRoutes');
-const taskController = require('./controllers/taskController')
-const pool = require('./config/dbConfig');
 
 app.use(express.json());
 
+app.use('/v1',taskRoutes)
 
 
-app.get('/tasks',taskController.getAllTasks);
+app.listen(port , () => {
+    console.log(`funcionando . ingresar http://localhost:${port}`);
+});
+
+
+
+/**
+ * app.get('/tasks',taskController.getAllTasks);
 //app.post('/tasks',taskController.createTask);
 app.post('/tasks', async (req , res) =>{
     console.log(`este es titulo ${req.body.title}`);
@@ -27,8 +33,4 @@ app.post('/tasks', async (req , res) =>{
 });
 app.put('/tasks/:id', taskController.updateTask);
 app.delete('/tasks/:id', taskController.deleteTask);
-
-app.listen(port , () => {
-    console.log(`funcionando . ingresar http://localhost:${port}`);
-});
-
+ */
